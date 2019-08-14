@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-
+        android:id="@+id/sender_layout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
@@ -19,22 +20,17 @@
             android:orientation="vertical"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
-
-        <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/appToken"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/main_appToken_hint"/>
         <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/userKey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/main_user_key_hint"/>
+                android:hint="@string/main_user_key_hint"
+                android:text="ugaadj4e8sa7yc5a79ntr4kohzi4g2"/>
         <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/message_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/main_messge_hint"/>
+                android:hint="@string/main_message_hint"/>
         <Button
                 android:id="@+id/sender_submit_button"
                 android:layout_width="match_parent"

@@ -11,5 +11,7 @@ data class SavedNotification(
     val dateTime: DateTime,
 
     @Embedded
-    val notification: PushNotification
+    val notification: PushRequest,
+
+    val isSuccess:Boolean
 )

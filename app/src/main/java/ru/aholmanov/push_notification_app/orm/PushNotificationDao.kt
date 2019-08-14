@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import io.reactivex.Flowable
 import io.reactivex.Single
 import ru.aholmanov.push_notification_app.model.SavedNotification
 
@@ -15,4 +16,7 @@ interface PushNotificationDao {
 
     @Query("SELECT * FROM savednotification")
     fun getAll(): Single<List<SavedNotification>>
+
+    @Query("SELECT * FROM savednotification")
+    fun observeNotifications():Flowable<List<SavedNotification>>
 }

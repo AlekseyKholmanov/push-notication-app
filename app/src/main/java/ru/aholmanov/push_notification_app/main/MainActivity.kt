@@ -16,26 +16,6 @@ class MainActivity : AndroidXMvpAppCompatActivity() {
         viewPager.adapter = PushFragmentAdapter(this, supportFragmentManager)
     }
 
-
-    override fun onResume() {
-        super.onResume()
-//        sendPushButton.setOnClickListener {
-//            pushService.pushNotification(
-//                PushNotification(
-//                    API_KEY,
-//                    USER_KEY, "blaha blaha blaha")
-//            )
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .doOnError {
-//
-//                }
-//                .subscribe({ Toast.makeText(this, "Complete", Toast.LENGTH_SHORT).show() },
-//                    { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show() })
-//
-//        }
-    }
-
     companion object {
         const val API_KEY = "agnrmy8dy7t1h7z4w8zjix9otr6qqi"
         const val USER_KEY = "ugaadj4e8sa7yc5a79ntr4kohzi4g2"

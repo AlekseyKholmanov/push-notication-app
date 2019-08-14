@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+    <TextView
+            android:id="@+id/item_user_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="@string/push_list_user_placeholder"
+            android:layout_marginEnd="8dp"
+    />
+    <TextView
+            android:id="@+id/item_user_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/item_user_hint"
+            android:layout_alignBottom="@id/item_user_hint"
+            android:textSize="16sp"
+            android:lines="1"
+    />
+    <TextView
+            android:id="@+id/item_message_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_user_hint"
+            android:textSize="16sp"
+            android:text="@string/push_list_message_placeholder"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+    />
+    <TextView
+            android:id="@+id/item_message_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/item_message_hint"
+            android:layout_alignBaseline="@id/item_message_hint"
+            android:layout_marginTop="8dp"
+            android:gravity="top|start"
+            android:minLines="1"
+            android:textSize="16sp"/>
+    <TextView
+            android:id="@+id/item_sended_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/item_message_text"
+            android:layout_marginTop="8dp"
+            android:hint="@string/push_list_date_hint"
+    />
+</RelativeLayout>

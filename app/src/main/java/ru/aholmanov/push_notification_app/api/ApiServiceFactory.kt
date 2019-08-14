@@ -24,6 +24,7 @@ object ApiServiceFactory {
 
     private fun createHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(PushInterceptor())
             .apply {
                 if (BuildConfig.DEBUG) {
                     addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))

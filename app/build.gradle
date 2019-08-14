@@ -13,6 +13,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "API_ENDPOINT", '"https://api.pushover.net/"'
+        buildConfigField "String", "API_KEY", '"agnrmy8dy7t1h7z4w8zjix9otr6qqi"'
     }
     buildTypes {
         release {
@@ -40,6 +41,10 @@ dependencies {
 
     // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+    // adapter delegates
+    implementation 'com.hannesdorfmann:adapterdelegates3:3.0.1'
 
     //androidx
     implementation 'androidx.appcompat:appcompat:1.0.2'

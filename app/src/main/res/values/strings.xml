@@ -2,7 +2,17 @@
     <string name="app_name">push-pushNotification-app</string>
     <string name="main_appToken_hint">app token</string>
     <string name="main_user_key_hint">user key</string>
-    <string name="main_messge_hint">message</string>
+    <string name="main_message_hint">message</string>
     <string name="main_push_button_text">PUSH BUTTON</string>
     <string name="no_push">\"Нет отправленных push-уведомлений\"</string>
+    <string name="no_internet">Отсутствует соединение с интернетом</string>
+    <string name="yes_internet">Соединение восстановлено</string>
+    <string name="sending_success">Уведомление успешно отправлено</string>
+    <string name="sending_error">не заполнены обязательные поля</string>
+    <string name="error_empty_field">поле не может быть пустым</string>
+    <string name="empty_list">Отсутствуют отправленные уведомления</string>
+    <string name="internal_error">Произошла ошибка</string>
+    <string name="push_list_date_hint">18.02.2019 22:45</string>
+    <string name="push_list_message_placeholder">MESSAGE:</string>
+    <string name="push_list_user_placeholder">USER:</string>
 </resources>

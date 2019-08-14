@@ -1,10 +1,11 @@
-package ru.aholmanov.push_notification_app.di.extension
+package ru.aholmanov.push_notification_app.extension
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
 
 fun Completable.async(): Completable {
@@ -26,3 +27,14 @@ fun <T> Single<T>.async(): Single<T> {
     return subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 }
+
+fun <T> Observable<T>.toResult() : Observable<Result<T>> {
+    return map { Result.fromData(it) }
+        .onErrorResumeNext( Function { Observable.just(Result.fromError(it)) })
+}
+
+fun <T> Single<T>.toResult() : Single<Result<T>> {
+    return map { Result.fromData(it) }
+        .onErrorResumeNext { Single.just(Result.fromError(it)) }
+}
+

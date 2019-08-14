@@ -5,7 +5,7 @@ import com.arellomobile.mvp.MvpView
 interface SenderView:MvpView {
     fun showLoading(show: Boolean)
 
-    fun onError(error: Throwable)
+    fun showError(message: String)
 
     fun onInternetStateChanged(connected: Boolean)
 

@@ -37,7 +37,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/pushList"
+                android:id="@+id/notificationsList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#fff"

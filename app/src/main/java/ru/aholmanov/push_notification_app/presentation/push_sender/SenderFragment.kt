@@ -1,7 +1,7 @@
 package ru.aholmanov.push_notification_app.presentation.push_sender
 
-import android.opengl.Visibility
 import android.os.Bundle
+import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +10,18 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_push_sender.*
 import ru.aholmanov.push_notification_app.App
+import ru.aholmanov.push_notification_app.BuildConfig
 import ru.aholmanov.push_notification_app.R
-import ru.aholmanov.push_notification_app.model.PushNotification
+import ru.aholmanov.push_notification_app.model.PushRequest
 import ru.aholmanov.push_notification_app.mvp.AndroidXMvpAppCompatFragment
 
 class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
     override fun showSuccess() {
-        Toast.makeText(context, "Уведомление успешно отправлено", Toast.LENGTH_SHORT).show()
+        message_text.text?.clear()
+        Snackbar.make(sender_layout, R.string.sending_success, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showLoading(show: Boolean) {
@@ -26,12 +29,17 @@ class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
         sender_submit_button.isEnabled = !show
     }
 
-    override fun onError(error: Throwable) {
-        Toast.makeText(context, "ошибка при отправке", Toast.LENGTH_SHORT).show()
+    override fun showError(message: String) {
+        Snackbar.make(sender_layout, message, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onInternetStateChanged(connected: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        sender_submit_button.isEnabled = connected
+        if (connected) {
+            Snackbar.make(sender_layout, R.string.yes_internet, Snackbar.LENGTH_SHORT).show()
+        } else {
+            Snackbar.make(sender_layout, R.string.no_internet, Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     @InjectPresenter
@@ -46,18 +54,20 @@ class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         sender_submit_button.setOnClickListener {
-            if (!hasEmptyText(appToken) and !hasEmptyText(userKey) and !hasEmptyText(message_text)) {
-                val notification = PushNotification(
-                    token = appToken.text.toString(),
-                    userKey = userKey.text.toString(),
+            if (!hasEmptyText(userKey) and !hasEmptyText(message_text)) {
+                presenter.sentNotification(
+                    user = userKey.text.toString(),
                     message = message_text.text.toString()
                 )
-                presenter.sentNotification(notification)
             } else
-                Toast.makeText(context, "не заполнены обязательные поля", Toast.LENGTH_SHORT).show()
+                Snackbar.make(sender_layout, R.string.sending_error, Snackbar.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        presenter.subscribeToNetworkChanges()
     }
 
     private fun hasEmptyText(view: EditText): Boolean {
@@ -69,7 +79,6 @@ class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
             false -> false
         }
     }
-
 
     companion object {
         fun newInstance(): SenderFragment {
