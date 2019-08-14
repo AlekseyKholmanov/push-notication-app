@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">push-notification-app</string>
+    <string name="app_name">push-pushNotification-app</string>
+    <string name="main_appToken_hint">app token</string>
+    <string name="main_user_key_hint">user key</string>
+    <string name="main_messge_hint">message</string>
+    <string name="main_push_button_text">PUSH BUTTON</string>
+    <string name="no_push">\"Нет отправленных push-уведомлений\"</string>
 </resources>
