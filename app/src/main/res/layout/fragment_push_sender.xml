@@ -30,6 +30,7 @@
                 android:id="@+id/message_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="10"
                 android:hint="@string/main_message_hint"/>
         <Button
                 android:id="@+id/sender_submit_button"

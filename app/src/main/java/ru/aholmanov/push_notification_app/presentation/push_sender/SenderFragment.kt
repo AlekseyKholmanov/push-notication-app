@@ -1,21 +1,17 @@
 package ru.aholmanov.push_notification_app.presentation.push_sender
 
 import android.os.Bundle
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.core.view.isVisible
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_push_sender.*
 import ru.aholmanov.push_notification_app.App
-import ru.aholmanov.push_notification_app.BuildConfig
 import ru.aholmanov.push_notification_app.R
-import ru.aholmanov.push_notification_app.model.PushRequest
 import ru.aholmanov.push_notification_app.mvp.AndroidXMvpAppCompatFragment
 
 class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
@@ -55,13 +51,27 @@ class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sender_submit_button.setOnClickListener {
-            if (!hasEmptyText(userKey) and !hasEmptyText(message_text)) {
+            if (isValidToSending()) {
                 presenter.sentNotification(
                     user = userKey.text.toString(),
                     message = message_text.text.toString()
                 )
-            } else
-                Snackbar.make(sender_layout, R.string.sending_error, Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun isValidToSending(): Boolean {
+        return when {
+            hasEmptyText(userKey) or  hasEmptyText(message_text) -> {
+                showError(getString(R.string.sending_error))
+                false
+            }
+            message_text.text.toString().toByteArray(Charsets.UTF_8).count() > 1024 -> {
+                showError(getString(R.string.error_long_message))
+                message_text.error = "слишком длинное сообщение"
+                false
+            }
+            else -> true
         }
     }
 

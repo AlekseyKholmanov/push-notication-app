@@ -3,6 +3,8 @@ package ru.aholmanov.push_notification_app.presentation.push_sender
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import org.joda.time.DateTime
+import org.json.JSONObject
+import retrofit2.HttpException
 import ru.aholmanov.push_notification_app.extension.async
 import ru.aholmanov.push_notification_app.extension.toResult
 import ru.aholmanov.push_notification_app.model.PushRequest
@@ -25,36 +27,34 @@ class SenderPresenter @Inject constructor(
         viewState.showLoading(true)
         repository.sendNotification(notification)
             .async()
-//            .doOnError {
-//                insert(notification,false)
-//                Log.d("qwerty", "error")
-//            }
-//            .doAfterSuccess {
-//                insert(notification, true)
-//                Log.d("qwerty", "success")
-//            }
-            .toResult()
             .doAfterTerminate { viewState.showLoading(false) }
-            .subscribe({
-                if (it.isSuccess())
-                    viewState.showSuccess()
-                else
-                    viewState.showError("unexpected error")
-                insert(notification,it.isSuccess())
-            }, {}
-
-//                { error ->
-//                if (error is HttpException) {
-//                    val body = error.response().errorBody()
-//                    val jObjError = JSONObject(body!!.string())
-//                    val errorMessage = jObjError.getJSONArray("errors").getString(0)
-//                    viewState.showError(errorMessage)
-//                }
-//                else
-//                    viewState.showError("unexpected error")
-//            }
-            )
+            .subscribe({ response ->
+                viewState.showSuccess()
+                insert(id = response.requestId, notification = notification, isSuccess = true)
+            }, { error ->
+                viewState.showError(getErrorMessage(error))
+                val id = getErrorMessageId(error)
+                insert(id = id, notification = notification, isSuccess = false)
+            })
             .keep()
+    }
+
+    private fun getErrorMessage(t: Throwable?): String {
+        return if (t is HttpException) {
+            val body = t.response().errorBody()
+            val jObjError = JSONObject(body!!.string())
+            jObjError.getJSONArray("errors").getString(0)
+        } else {
+            "unexpected error"
+        }
+    }
+
+    private fun getErrorMessageId(t: Throwable?): String {
+        return if (t is HttpException) {
+            val body = t.response().errorBody()
+            val jObjError = JSONObject(body!!.string())
+            jObjError.getString("request")
+        } else "0"
     }
 
     fun subscribeToNetworkChanges() {
@@ -69,8 +69,8 @@ class SenderPresenter @Inject constructor(
             .keep()
     }
 
-    private fun insert(notification: PushRequest, isSuccess: Boolean) {
-        repository.insert(SavedNotification(DateTime.now(), notification, isSuccess))
+    private fun insert(id: String, notification: PushRequest, isSuccess: Boolean) {
+        repository.insert(SavedNotification(id, DateTime.now(), notification, isSuccess))
             .async()
             .subscribe({}, {
                 Log.d("qwerty", it.message)

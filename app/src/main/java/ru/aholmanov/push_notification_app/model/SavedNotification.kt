@@ -8,10 +8,12 @@ import org.joda.time.DateTime
 @Entity
 data class SavedNotification(
     @PrimaryKey(autoGenerate = false)
+    val id: String,
+
     val dateTime: DateTime,
 
     @Embedded
     val notification: PushRequest,
 
-    val isSuccess:Boolean
+    val isSuccess: Boolean
 )

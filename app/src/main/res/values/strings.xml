@@ -15,4 +15,5 @@
     <string name="push_list_date_hint">18.02.2019 22:45</string>
     <string name="push_list_message_placeholder">MESSAGE:</string>
     <string name="push_list_user_placeholder">USER:</string>
+    <string name="error_long_message">Слишком длинное сообщение</string>
 </resources>
