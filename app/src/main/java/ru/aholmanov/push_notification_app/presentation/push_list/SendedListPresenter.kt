@@ -10,16 +10,6 @@ import javax.inject.Inject
 class SendedListPresenter @Inject constructor(
     private val repository: PushNotificationRepository
 ) : BasePresenter<SendedListView>() {
-    fun getNotification() {
-        repository.getNotification()
-            .async()
-            .subscribe ({
-                viewState.showNotifications(it)
-            },{
-                viewState.showError(it)
-            })
-            .keep()
-    }
 
     fun observeNotification(){
         repository.observeNotifications()

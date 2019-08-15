@@ -4,8 +4,11 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.push_list_item.view.*
 import ru.aholmanov.push_notification_app.R
 import ru.aholmanov.push_notification_app.extension.toFormatTime
 import ru.aholmanov.push_notification_app.model.Priority
@@ -39,27 +42,44 @@ class NotificationsAdapter(private var notifications: List<SavedNotification> = 
         val message: TextView = v.findViewById(R.id.item_message_text)
         val date: TextView = v.findViewById(R.id.item_sended_date)
         val title: TextView = v.findViewById(R.id.item_title_text)
-        val titlePlaceholder:TextView = v.findViewById(R.id.item_title_placeholder)
+        val titleContainer: LinearLayout = v.findViewById(R.id.item_title_container)
         val priority: TextView = v.findViewById(R.id.item_priority_text)
+        val status: TextView = v.findViewById(R.id.item_status_text)
+        val statusImage: ImageView = v.findViewById(R.id.item_status_image)
 
         fun bind(notification: SavedNotification) {
             user.text = notification.notification.userKey
             message.text = notification.notification.message
             date.text = notification.dateTime.toFormatTime()
+            val priorityName = Priority.values()[notification.notification.priority + 2]
+            priority.text = priorityName.name
 
-            if (notification.notification.title.isNullOrEmpty()){
-                title.visibility = View.GONE
-                titlePlaceholder.visibility = View.GONE
-            }
-            else
+            if (notification.notification.title.isNullOrEmpty()) {
+                titleContainer.visibility = View.GONE
+            } else
+                titleContainer.visibility = View.VISIBLE
                 title.text = notification.notification.title
-            priority.text = Priority.getName(notification.notification.priority)
-            val color = if (notification.isSuccess)
-                Color.GREEN
-            else
-                Color.RED
-            v.setBackgroundColor(color)
-            v.background.alpha = 100
+
+            if (notification.isSuccess) {
+                status.text = "success"
+                statusImage.setImageResource(R.drawable.ic_ok)
+            } else {
+                status.text = "error"
+                statusImage.setImageResource(R.drawable.ic_fail)
+            }
+            when (priorityName) {
+                Priority.EMERGENCY_PRIORITY -> {
+                    v.setBackgroundColor(Color.RED)
+                    v.background.alpha = 180
+                }
+                Priority.HIGHT_PRIORITY -> {
+                    v.setBackgroundColor(Color.RED)
+                    v.background.alpha = 100
+                }
+                else -> {
+                    v.setBackgroundColor(Color.TRANSPARENT)
+                }
+            }
         }
     }
 }

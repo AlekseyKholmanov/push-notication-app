@@ -1,6 +1,7 @@
 package ru.aholmanov.push_notification_app.presentation.push_sender
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import ru.aholmanov.push_notification_app.model.Priority
 import ru.aholmanov.push_notification_app.mvp.AndroidXMvpAppCompatFragment
 
 class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
+
     override fun showSuccess() {
         message_text.text?.clear()
         message_title.text?.clear()
@@ -84,9 +86,7 @@ class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
                     message_retry.text?.clear()
                 }
             }
-
         }
-        //message_spinner.setPromptId(Priority.NORMAL_PRIORITY.ordinal)
     }
 
     private fun isValidToSending(): Boolean {
@@ -101,10 +101,12 @@ class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView {
                 false
             }
             message_title.text?.characterCount() ?: 0 > 250 -> {
+                Log.d("qwerty", message_title.text?.characterCount().toString())
                 showError(getString(R.string.error_long_message))
                 message_title.error = "title не может быть больше 250 символов"
                 false
             }
+            //для Emergency priority retry и expire должны быть заполнены
             Priority.values()[message_spinner.selectedItemPosition] == Priority.EMERGENCY_PRIORITY &&
                     hasEmptyText(message_retry) or hasEmptyText(message_expire) -> {
                 val errorMessage = getString(R.string.error_require_field)

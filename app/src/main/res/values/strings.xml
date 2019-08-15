@@ -21,4 +21,6 @@
     <string name="user_placeholder">User:</string>
     <string name="retry_placeholder">Retry:</string>
     <string name="expire_placeholder">Expire:</string>
+    <string name="status_placeholder">Status:</string>
+    <string name="status_image_content">donwload status</string>
 </resources>

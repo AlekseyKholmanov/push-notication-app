@@ -31,7 +31,6 @@ class SendedListFragment : AndroidXMvpAppCompatFragment(), SendedListView {
             emptyPlaceholder.isVisible = false
             notificationsList.isVisible = true
             adapter.setNews(notifications)
-            adapter.notifyDataSetChanged()
         }
     }
 
@@ -63,11 +62,6 @@ class SendedListFragment : AndroidXMvpAppCompatFragment(), SendedListView {
         decoration.setDrawable(context!!.getDrawable(R.drawable.divider))
         notificationsList.addItemDecoration(decoration)
         presenter.observeNotification()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        presenter.getNotification()
     }
 
     companion object {

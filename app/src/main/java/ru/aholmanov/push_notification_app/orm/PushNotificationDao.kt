@@ -15,8 +15,5 @@ interface PushNotificationDao {
     fun insert(notification: SavedNotification)
 
     @Query("SELECT * FROM savednotification")
-    fun getAll(): Single<List<SavedNotification>>
-
-    @Query("SELECT * FROM savednotification")
     fun observeNotifications():Flowable<List<SavedNotification>>
 }

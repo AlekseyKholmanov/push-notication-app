@@ -57,7 +57,7 @@ class SenderPresenter @Inject constructor(
         var (message, id) = Pair("", "")
         if (t is HttpException) {
             val body = t.response().errorBody()
-            val jObjError = JSONObject(body!!.string())
+            val jObjError = JSONObject(body?.string())
             message = jObjError.getJSONArray("errors").getString(0)
             id = jObjError.getString("request")
         } else {

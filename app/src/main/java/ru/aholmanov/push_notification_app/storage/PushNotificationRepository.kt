@@ -22,12 +22,7 @@ class PushNotificationRepository @Inject constructor(
         return pushService.pushNotification(notification = notification)
     }
 
-    fun getNotification(): Single<List<SavedNotification>> {
-        return dao.getAll()
-    }
-
     fun insert(notification: SavedNotification): Completable {
-        Log.d("qwerty","try to insert")
         return Completable.fromCallable { dao.insert(notification) }
     }
 

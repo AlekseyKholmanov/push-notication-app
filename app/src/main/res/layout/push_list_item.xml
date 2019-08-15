@@ -1,97 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
-    <TextView
-            android:id="@+id/item_priority_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:text="@string/priority_placeholder"
-            android:layout_marginEnd="8dp"
-    />
-    <TextView
-            android:id="@+id/item_priority_text"
+    <LinearLayout
+            android:id="@+id/item_priority_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/item_priority_hint"
-            android:layout_alignBottom="@id/item_priority_hint"
-            android:textSize="16sp"
-            android:lines="1"
-    />
-    <TextView
-            android:id="@+id/item_user_placeholder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_priority_hint"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:text="@string/user_placeholder"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8sp"
-    />
-    <TextView
-            android:id="@+id/item_user_text"
+            android:orientation="horizontal"
+            android:gravity="center">
+        <TextView
+                android:id="@+id/item_priority_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="@string/priority_placeholder"
+                android:layout_marginEnd="8dp"/>
+        <TextView
+                android:id="@+id/item_priority_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:lines="1"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/item_user_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/item_user_placeholder"
-            android:layout_alignBottom="@id/item_user_placeholder"
-            android:textSize="16sp"
-            android:lines="1"
-    />
-    <TextView
-            android:id="@+id/item_title_placeholder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_user_placeholder"
-            android:textSize="16sp"
-            android:text="@string/title_placeholder"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-    />
-    <TextView
-            android:id="@+id/item_title_text"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:layout_marginTop="8dp">
+        <TextView
+                android:id="@+id/item_user_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="@string/user_placeholder"
+                android:layout_marginEnd="8dp"/>
+        <TextView
+                android:id="@+id/item_user_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:lines="1"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/item_title_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/item_title_placeholder"
-            android:layout_alignBaseline="@id/item_title_placeholder"
-            android:layout_marginTop="8dp"
-            android:gravity="top|start"
-            android:minLines="1"
-            android:textSize="16sp"/>
-    <TextView
-            android:id="@+id/item_message_placeholder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_title_placeholder"
-            android:textSize="16sp"
-            android:text="@string/message_placeholder"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-    />
-    <TextView
-            android:id="@+id/item_message_text"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:layout_marginTop="8dp">
+        <TextView
+                android:id="@+id/item_title_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/title_placeholder"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"/>
+        <TextView
+                android:id="@+id/item_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|start"
+                android:minLines="1"
+                android:textSize="16sp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/item_message_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/item_message_placeholder"
-            android:layout_alignBaseline="@id/item_message_placeholder"
-            android:layout_marginTop="8dp"
-            android:gravity="top|start"
-            android:minLines="1"
-            android:textSize="16sp"/>
-    <TextView
-            android:id="@+id/item_sended_date"
-            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:layout_marginTop="8dp">
+        <TextView
+                android:id="@+id/item_message_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/message_placeholder"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"/>
+        <TextView
+                android:id="@+id/item_message_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="1"
+                android:textSize="16sp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/item_status_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/item_message_text"
+            android:orientation="horizontal"
             android:layout_marginTop="8dp"
-            android:hint="@string/push_list_date_hint"
-    />
-</RelativeLayout>
+            android:gravity="center_vertical"
+    >
+        <TextView
+                android:id="@+id/item_status_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/status_placeholder"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"/>
+        <TextView
+                android:id="@+id/item_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        <ImageView
+                android:id="@+id/item_status_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/status_image_content"/>
+        <TextView
+                android:id="@+id/item_sended_date"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="end|center_vertical"
+                android:hint="@string/push_list_date_hint"/>
+    </LinearLayout>
+
+</LinearLayout>
