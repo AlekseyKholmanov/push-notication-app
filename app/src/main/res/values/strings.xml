@@ -1,19 +1,24 @@
 <resources>
     <string name="app_name">push-pushNotification-app</string>
-    <string name="main_appToken_hint">app token</string>
-    <string name="main_user_key_hint">user key</string>
-    <string name="main_message_hint">message</string>
-    <string name="main_push_button_text">PUSH BUTTON</string>
+    <string name="sender_push_button_text">PUSH BUTTON</string>
     <string name="no_push">\"Нет отправленных push-уведомлений\"</string>
     <string name="no_internet">Отсутствует соединение с интернетом</string>
     <string name="yes_internet">Соединение восстановлено</string>
     <string name="sending_success">Уведомление успешно отправлено</string>
-    <string name="sending_error">не заполнены обязательные поля</string>
+    <string name="error_require_field">Не заполнены обязательные поля</string>
     <string name="error_empty_field">поле не может быть пустым</string>
-    <string name="empty_list">Отсутствуют отправленные уведомления</string>
-    <string name="internal_error">Произошла ошибка</string>
+    <string name="error_empty_list">Отсутствуют отправленные уведомления</string>
+    <string name="error_internal">Произошла ошибка</string>
+    <string name="error_long_message">Слишком длинное сообщение</string>
     <string name="push_list_date_hint">18.02.2019 22:45</string>
     <string name="push_list_message_placeholder">MESSAGE:</string>
     <string name="push_list_user_placeholder">USER:</string>
-    <string name="error_long_message">Слишком длинное сообщение</string>
+    <string name="hint_optional">(optional)</string>
+    <string name="hint_require">(require)</string>
+    <string name="priority_placeholder">Priority:</string>
+    <string name="title_placeholder">Title:</string>
+    <string name="message_placeholder">Message:</string>
+    <string name="user_placeholder">User:</string>
+    <string name="retry_placeholder">Retry:</string>
+    <string name="expire_placeholder">Expire:</string>
 </resources>

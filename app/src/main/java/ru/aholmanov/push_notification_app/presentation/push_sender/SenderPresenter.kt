@@ -6,7 +6,7 @@ import org.joda.time.DateTime
 import org.json.JSONObject
 import retrofit2.HttpException
 import ru.aholmanov.push_notification_app.extension.async
-import ru.aholmanov.push_notification_app.extension.toResult
+import ru.aholmanov.push_notification_app.model.Priority
 import ru.aholmanov.push_notification_app.model.PushRequest
 import ru.aholmanov.push_notification_app.model.SavedNotification
 import ru.aholmanov.push_notification_app.mvp.BasePresenter
@@ -22,8 +22,22 @@ class SenderPresenter @Inject constructor(
 ) : BasePresenter<SenderView>() {
     private var previousInternetState = true
 
-    fun sentNotification(user: String, message: String) {
-        val notification = PushRequest(userKey = user, message = message)
+    fun sentNotification(
+        user: String,
+        message: String,
+        title: String,
+        priority: Priority,
+        retry: String,
+        expire: String
+    ) {
+        val notification = PushRequest(
+            userKey = user,
+            message = message,
+            title = title,
+            priority = priority.id,
+            retry = retry,
+            expire = expire
+        )
         viewState.showLoading(true)
         repository.sendNotification(notification)
             .async()
@@ -32,29 +46,25 @@ class SenderPresenter @Inject constructor(
                 viewState.showSuccess()
                 insert(id = response.requestId, notification = notification, isSuccess = true)
             }, { error ->
-                viewState.showError(getErrorMessage(error))
-                val id = getErrorMessageId(error)
-                insert(id = id, notification = notification, isSuccess = false)
+                val pair = getErrorComponent(error)
+                viewState.showError(pair.first)
+                insert(id = pair.second, notification = notification, isSuccess = false)
             })
             .keep()
     }
 
-    private fun getErrorMessage(t: Throwable?): String {
-        return if (t is HttpException) {
+    private fun getErrorComponent(t: Throwable?): Pair<String, String> {
+        var (message, id) = Pair("", "")
+        if (t is HttpException) {
             val body = t.response().errorBody()
             val jObjError = JSONObject(body!!.string())
-            jObjError.getJSONArray("errors").getString(0)
+            message = jObjError.getJSONArray("errors").getString(0)
+            id = jObjError.getString("request")
         } else {
-            "unexpected error"
+            message = "unexpected error"
+            id = "0"
         }
-    }
-
-    private fun getErrorMessageId(t: Throwable?): String {
-        return if (t is HttpException) {
-            val body = t.response().errorBody()
-            val jObjError = JSONObject(body!!.string())
-            jObjError.getString("request")
-        } else "0"
+        return message to id
     }
 
     fun subscribeToNetworkChanges() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sender_layout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sender_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <ProgressBar
@@ -19,24 +19,155 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:layout_width="match_parent">
-        <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/userKey"
+            android:layout_width="match_parent"
+            android:padding="8dp">
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/main_user_key_hint"
-                android:text="ugaadj4e8sa7yc5a79ntr4kohzi4g2"/>
-        <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/message_text"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+            <TextView
+                    android:id="@+id/user_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_placeholder"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_centerVertical="true"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/userKey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_require"
+                    android:text="ugaadj4e8sa7yc5a79ntr4kohzi4g2"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/user_placeholder"/>
+        </RelativeLayout>
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="10"
-                android:hint="@string/main_message_hint"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+            <TextView
+                    android:id="@+id/message_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/message_placeholder"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_centerVertical="true"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/message_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="8"
+                    android:hint="@string/hint_require"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/message_placeholder"/>
+        </RelativeLayout>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+            <TextView
+                    android:id="@+id/title_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_placeholder"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_centerVertical="true"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/message_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="6"
+                    android:hint="@string/hint_optional"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/title_placeholder"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+            <TextView
+                    android:id="@+id/priority_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/priority_placeholder"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_centerVertical="true"/>
+            <Spinner
+                    android:id="@+id/message_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:spinnerMode="dialog"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/priority_placeholder"/>
+        </RelativeLayout>
+        <RelativeLayout
+                android:id="@+id/priority_emergency_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:visibility="gone">
+            <TextView
+                    android:id="@+id/retry_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/retry_placeholder"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_centerVertical="true"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/message_retry"
+                    android:layout_width="100dp"
+                    android:maxLength="5"
+                    android:hint="@string/hint_require"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/retry_placeholder"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="number"/>
+            <TextView
+                    android:id="@+id/expire_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/expire_placeholder"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_toEndOf="@id/message_retry"
+                    android:layout_marginEnd="8dp"
+                    android:layout_centerVertical="true"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/message_expire"
+                    android:layout_width="100dp"
+                    android:maxLength="5"
+                    android:hint="@string/hint_require"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/expire_placeholder"
+                    android:inputType="number"/>
+        </RelativeLayout>
+
         <Button
                 android:id="@+id/sender_submit_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/main_push_button_text"/>
+                android:text="@string/sender_push_button_text"
+                android:layout_marginTop="8dp"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

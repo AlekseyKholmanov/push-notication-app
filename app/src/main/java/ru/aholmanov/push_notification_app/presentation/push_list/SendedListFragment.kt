@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_push_sended_list.*
 import ru.aholmanov.push_notification_app.App
 import ru.aholmanov.push_notification_app.R
@@ -40,7 +39,7 @@ class SendedListFragment : AndroidXMvpAppCompatFragment(), SendedListView {
         emptyPlaceholder.isVisible = true
         notificationsList.isVisible = false
 
-        val textRes = R.string.empty_list
+        val textRes = R.string.error_empty_list
         emptyPlaceholderText.setText(textRes)
     }
 
