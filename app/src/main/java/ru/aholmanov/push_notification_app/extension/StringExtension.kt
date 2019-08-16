@@ -15,5 +15,5 @@ fun String.toDateTime():DateTime{
 }
 
 fun Editable.characterCount(): Int {
-    return this.toString().toByteArray(Charsets.UTF_8).count()
+    return this.toString().count()
 }
