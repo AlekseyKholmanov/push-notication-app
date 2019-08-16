@@ -1,7 +1,7 @@
 package ru.aholmanov.push_notification_app.presentation.push_list
 
 import com.arellomobile.mvp.MvpView
-import ru.aholmanov.push_notification_app.model.SavedNotification
+import ru.aholmanov.push_notification_app.domain.model.SavedNotification
 
 
 interface SendedListView : MvpView {

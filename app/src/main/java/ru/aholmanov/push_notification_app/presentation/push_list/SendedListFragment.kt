@@ -12,35 +12,18 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_push_sended_list.*
 import ru.aholmanov.push_notification_app.App
 import ru.aholmanov.push_notification_app.R
-import ru.aholmanov.push_notification_app.model.SavedNotification
+import ru.aholmanov.push_notification_app.domain.model.SavedNotification
 import ru.aholmanov.push_notification_app.mvp.AndroidXMvpAppCompatFragment
 
 class SendedListFragment : AndroidXMvpAppCompatFragment(), SendedListView {
+
+    companion object {
+        fun newInstance(): SendedListFragment {
+            return SendedListFragment()
+        }
+    }
+
     private lateinit var adapter: NotificationsAdapter
-
-    override fun showError(t: Throwable) {
-        if (adapter.itemCount == 0) {
-            showEmptyPlaceholder()
-        }
-    }
-
-    override fun showNotifications(notifications: List<SavedNotification>) {
-        if (notifications.isEmpty()) {
-            showEmptyPlaceholder()
-        } else {
-            emptyPlaceholder.isVisible = false
-            notificationsList.isVisible = true
-            adapter.setNews(notifications)
-        }
-    }
-
-    private fun showEmptyPlaceholder() {
-        emptyPlaceholder.isVisible = true
-        notificationsList.isVisible = false
-
-        val textRes = R.string.error_empty_list
-        emptyPlaceholderText.setText(textRes)
-    }
 
     @InjectPresenter
     lateinit var presenter: SendedListPresenter
@@ -64,9 +47,28 @@ class SendedListFragment : AndroidXMvpAppCompatFragment(), SendedListView {
         presenter.observeNotification()
     }
 
-    companion object {
-        fun newInstance(): SendedListFragment {
-            return SendedListFragment()
+    override fun showError(t: Throwable) {
+        if (adapter.itemCount == 0) {
+            showEmptyPlaceholder()
         }
     }
+
+    override fun showNotifications(notifications: List<SavedNotification>) {
+        if (notifications.isEmpty()) {
+            showEmptyPlaceholder()
+        } else {
+            emptyPlaceholder.isVisible = false
+            notificationsList.isVisible = true
+            adapter.setNews(notifications)
+        }
+    }
+
+    private fun showEmptyPlaceholder() {
+        emptyPlaceholder.isVisible = true
+        notificationsList.isVisible = false
+        val textRes = R.string.error_empty_list
+        emptyPlaceholderText.setText(textRes)
+    }
+
+
 }

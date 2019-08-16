@@ -28,13 +28,3 @@ fun <T> Single<T>.async(): Single<T> {
         .observeOn(AndroidSchedulers.mainThread())
 }
 
-fun <T> Observable<T>.toResult() : Observable<Result<T>> {
-    return map { Result.fromData(it) }
-        .onErrorResumeNext( Function { Observable.just(Result.fromError(it)) })
-}
-
-fun <T> Single<T>.toResult() : Single<Result<T>> {
-    return map { Result.fromData(it) }
-        .onErrorResumeNext { Single.just(Result.fromError(it)) }
-}
-

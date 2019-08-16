@@ -7,9 +7,9 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import ru.aholmanov.push_notification_app.api.ApiServiceFactory
-import ru.aholmanov.push_notification_app.api.PushService
-import ru.aholmanov.push_notification_app.orm.PushDatabase
+import ru.aholmanov.push_notification_app.dataLayer.api.ApiServiceFactory
+import ru.aholmanov.push_notification_app.dataLayer.api.PushService
+import ru.aholmanov.push_notification_app.dataLayer.orm.PushDatabase
 import javax.inject.Singleton
 
 @Module

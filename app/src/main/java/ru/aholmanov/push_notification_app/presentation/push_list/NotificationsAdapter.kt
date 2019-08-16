@@ -8,11 +8,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.push_list_item.view.*
 import ru.aholmanov.push_notification_app.R
-import ru.aholmanov.push_notification_app.extension.toFormatTime
-import ru.aholmanov.push_notification_app.model.Priority
-import ru.aholmanov.push_notification_app.model.SavedNotification
+import ru.aholmanov.push_notification_app.extension.toStringFormat
+import ru.aholmanov.push_notification_app.domain.model.Priority
+import ru.aholmanov.push_notification_app.domain.model.SavedNotification
 
 class NotificationsAdapter(private var notifications: List<SavedNotification> = listOf()) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -50,7 +49,7 @@ class NotificationsAdapter(private var notifications: List<SavedNotification> = 
         fun bind(notification: SavedNotification) {
             user.text = notification.notification.userKey
             message.text = notification.notification.message
-            date.text = notification.dateTime.toFormatTime()
+            date.text = notification.dateTime.toStringFormat()
             val priorityName = Priority.values()[notification.notification.priority + 2]
             priority.text = priorityName.name
 

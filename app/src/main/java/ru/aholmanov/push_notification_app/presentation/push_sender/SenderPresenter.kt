@@ -6,12 +6,12 @@ import org.joda.time.DateTime
 import org.json.JSONObject
 import retrofit2.HttpException
 import ru.aholmanov.push_notification_app.extension.async
-import ru.aholmanov.push_notification_app.model.Priority
-import ru.aholmanov.push_notification_app.model.PushRequest
-import ru.aholmanov.push_notification_app.model.SavedNotification
+import ru.aholmanov.push_notification_app.domain.model.Priority
+import ru.aholmanov.push_notification_app.domain.model.PushRequest
+import ru.aholmanov.push_notification_app.domain.model.SavedNotification
 import ru.aholmanov.push_notification_app.mvp.BasePresenter
-import ru.aholmanov.push_notification_app.network.NetworkStateListener
-import ru.aholmanov.push_notification_app.storage.PushNotificationRepository
+import ru.aholmanov.push_notification_app.utils.NetworkStateListener
+import ru.aholmanov.push_notification_app.dataLayer.storage.PushNotificationRepository
 import javax.inject.Inject
 
 
@@ -28,7 +28,8 @@ class SenderPresenter @Inject constructor(
         title: String,
         priority: Priority,
         retry: String,
-        expire: String
+        expire: String,
+        time: String
     ) {
         val notification = PushRequest(
             userKey = user,
@@ -36,7 +37,8 @@ class SenderPresenter @Inject constructor(
             title = title,
             priority = priority.id,
             retry = retry,
-            expire = expire
+            expire = expire,
+            time = time
         )
         viewState.showLoading(true)
         repository.sendNotification(notification)
@@ -80,7 +82,14 @@ class SenderPresenter @Inject constructor(
     }
 
     private fun insert(id: String, notification: PushRequest, isSuccess: Boolean) {
-        repository.insert(SavedNotification(id, DateTime.now(), notification, isSuccess))
+        repository.insert(
+            SavedNotification(
+                id,
+                DateTime.now(),
+                notification,
+                isSuccess
+            )
+        )
             .async()
             .subscribe({}, {
                 Log.d("qwerty", it.message)

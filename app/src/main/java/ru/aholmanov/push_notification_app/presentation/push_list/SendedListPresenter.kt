@@ -3,7 +3,7 @@ package ru.aholmanov.push_notification_app.presentation.push_list
 import com.arellomobile.mvp.InjectViewState
 import ru.aholmanov.push_notification_app.extension.async
 import ru.aholmanov.push_notification_app.mvp.BasePresenter
-import ru.aholmanov.push_notification_app.storage.PushNotificationRepository
+import ru.aholmanov.push_notification_app.dataLayer.storage.PushNotificationRepository
 import javax.inject.Inject
 
 @InjectViewState

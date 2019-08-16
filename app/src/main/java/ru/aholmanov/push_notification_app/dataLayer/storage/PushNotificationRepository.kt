@@ -1,15 +1,14 @@
-package ru.aholmanov.push_notification_app.storage
+package ru.aholmanov.push_notification_app.dataLayer.storage
 
-import android.util.Log
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
-import ru.aholmanov.push_notification_app.api.PushService
-import ru.aholmanov.push_notification_app.model.PushRequest
-import ru.aholmanov.push_notification_app.model.PushResponce
-import ru.aholmanov.push_notification_app.model.SavedNotification
-import ru.aholmanov.push_notification_app.orm.PushDatabase
-import ru.aholmanov.push_notification_app.orm.PushNotificationDao
+import ru.aholmanov.push_notification_app.dataLayer.api.PushService
+import ru.aholmanov.push_notification_app.domain.model.PushRequest
+import ru.aholmanov.push_notification_app.domain.model.PushResponce
+import ru.aholmanov.push_notification_app.domain.model.SavedNotification
+import ru.aholmanov.push_notification_app.dataLayer.orm.PushDatabase
+import ru.aholmanov.push_notification_app.dataLayer.orm.PushNotificationDao
 import javax.inject.Inject
 
 class PushNotificationRepository @Inject constructor(

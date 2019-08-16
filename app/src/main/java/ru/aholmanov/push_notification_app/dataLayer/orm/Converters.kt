@@ -1,4 +1,4 @@
-package ru.aholmanov.push_notification_app.orm
+package ru.aholmanov.push_notification_app.dataLayer.orm
 
 import androidx.room.TypeConverter
 import org.joda.time.DateTime

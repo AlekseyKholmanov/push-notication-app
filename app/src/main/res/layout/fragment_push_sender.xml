@@ -162,6 +162,29 @@
                         android:layout_toEndOf="@id/expire_placeholder"
                         android:inputType="number"/>
             </RelativeLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+                <CheckedTextView
+                        android:id="@+id/message_dellayed_placeholder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/dellayed_message_placeholder"
+                        android:textSize="16sp"
+                        android:layout_marginEnd="8dp"
+                        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center_vertical"/>
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/message_pickTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:hint="@string/message_dellayed_hint"
+                        android:visibility="gone"
+                        android:focusable="false"/>
+            </LinearLayout>
 
             <Button
                     android:id="@+id/sender_submit_button"
@@ -169,6 +192,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sender_push_button_text"
                     android:layout_marginTop="8dp"/>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

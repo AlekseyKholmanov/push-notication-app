@@ -1,4 +1,4 @@
-package ru.aholmanov.push_notification_app.api
+package ru.aholmanov.push_notification_app.dataLayer.api
 
 import okhttp3.Interceptor
 import okhttp3.Response

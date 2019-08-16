@@ -23,4 +23,6 @@
     <string name="expire_placeholder">Expire:</string>
     <string name="status_placeholder">Status:</string>
     <string name="status_image_content">donwload status</string>
+    <string name="dellayed_message_placeholder">Delivery dellayed:</string>
+    <string name="message_dellayed_hint">tap to pick time</string>
 </resources>

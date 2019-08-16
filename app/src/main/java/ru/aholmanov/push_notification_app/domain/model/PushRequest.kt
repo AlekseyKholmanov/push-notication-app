@@ -1,4 +1,4 @@
-package ru.aholmanov.push_notification_app.model
+package ru.aholmanov.push_notification_app.domain.model
 
 import com.google.gson.annotations.SerializedName
 import ru.aholmanov.push_notification_app.BuildConfig
@@ -22,6 +22,9 @@ data class PushRequest(
     val retry: String?,
 
     @SerializedName("expire")
-    val expire: String?
+    val expire: String?,
+
+    @SerializedName("timestamp")
+    val time:String
 
 ) : Serializable

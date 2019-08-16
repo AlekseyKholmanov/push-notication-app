@@ -1,4 +1,4 @@
-package ru.aholmanov.push_notification_app.model
+package ru.aholmanov.push_notification_app.domain.model
 
 enum class Priority(val id: Int) {
     LOWEST_PRIORITY(-2),

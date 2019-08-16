@@ -1,4 +1,4 @@
-package ru.aholmanov.push_notification_app.network
+package ru.aholmanov.push_notification_app.utils
 
 import android.content.BroadcastReceiver
 import android.content.Context

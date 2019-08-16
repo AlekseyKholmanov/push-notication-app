@@ -1,4 +1,4 @@
-package ru.aholmanov.push_notification_app.model
+package ru.aholmanov.push_notification_app.domain.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
