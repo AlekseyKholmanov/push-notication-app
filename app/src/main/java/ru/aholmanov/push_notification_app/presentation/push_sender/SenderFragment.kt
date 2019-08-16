@@ -13,6 +13,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_push_sender.*
+import kotlinx.android.synthetic.main.progress_bar.*
 import org.joda.time.DateTime
 import ru.aholmanov.push_notification_app.App
 import ru.aholmanov.push_notification_app.R
@@ -111,7 +112,7 @@ class SenderFragment : AndroidXMvpAppCompatFragment(), SenderView, IDatePickerCa
     }
 
     override fun showLoading(show: Boolean) {
-        progressBar.isVisible = show
+        progress_overlay.isVisible = show
         sender_submit_button.isEnabled = !show
     }
 
