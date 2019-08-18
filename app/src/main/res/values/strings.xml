@@ -15,14 +15,16 @@
     <string name="push_list_user_placeholder">USER:</string>
     <string name="hint_optional">(optional)</string>
     <string name="hint_require">(require)</string>
-    <string name="priority_placeholder">Priority:</string>
-    <string name="title_placeholder">Title:</string>
-    <string name="message_placeholder">Message:</string>
-    <string name="user_placeholder">User:</string>
-    <string name="retry_placeholder">Retry:</string>
-    <string name="expire_placeholder">Expire:</string>
-    <string name="status_placeholder">Status:</string>
+    <string name="placeholder_priority">Priority:</string>
+    <string name="placeholder_title">Title:</string>
+    <string name="placeholder_message">Message:</string>
+    <string name="placeholder_user">User:</string>
+    <string name="placeholder_retry">Retry:</string>
+    <string name="placeholder_expire">Expire:</string>
+    <string name="placeholder_status">Status:</string>
+    <string name="placeholder_delayed_message">Delivery delayed:</string>
+    <string name="status_success">success</string>
+    <string name="status_error">success</string>
     <string name="status_image_content">download status</string>
-    <string name="delayed_message_placeholder">Delivery dellayed:</string>
     <string name="message_delayed_hint">tap to pick time</string>
 </resources>

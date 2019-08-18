@@ -6,11 +6,11 @@ import ru.aholmanov.push_notification_app.BuildConfig
 
 class PushInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val origianl = chain.request()
-        val newUrl = origianl.url().newBuilder()
+        val original = chain.request()
+        val newUrl = original.url().newBuilder()
             .addQueryParameter("token", BuildConfig.API_KEY)
             .build()
-        val request = origianl.newBuilder()
+        val request = original.newBuilder()
             .url(newUrl)
             .build()
         return chain.proceed(request)

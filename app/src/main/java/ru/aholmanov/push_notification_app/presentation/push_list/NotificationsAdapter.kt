@@ -60,10 +60,10 @@ class NotificationsAdapter(private var notifications: List<SavedNotification> = 
                 title.text = notification.notification.title
 
             if (notification.isSuccess) {
-                status.text = "success"
+                status.setText(R.string.status_success)
                 statusImage.setImageResource(R.drawable.ic_ok)
             } else {
-                status.text = "error"
+                status.setText(R.string.status_error)
                 statusImage.setImageResource(R.drawable.ic_fail)
             }
             when (priorityName) {

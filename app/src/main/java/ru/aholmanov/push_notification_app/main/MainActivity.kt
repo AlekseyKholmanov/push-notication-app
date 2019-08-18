@@ -15,9 +15,4 @@ class MainActivity : AndroidXMvpAppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
         viewPager.adapter = PushFragmentAdapter(this, supportFragmentManager)
     }
-
-    companion object {
-        const val API_KEY = "agnrmy8dy7t1h7z4w8zjix9otr6qqi"
-        const val USER_KEY = "ugaadj4e8sa7yc5a79ntr4kohzi4g2"
-    }
 }
